@@ -7,8 +7,7 @@ from physics_constants import SCREEN_HEIGHT, TERMINAL_VELOCITY, GRAVITY, JUMP_CO
 class Bird(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.surface = pygame.Surface((30, 30))
-        self.surface.fill((128,255,40))
+        self.surface = pygame.image.load("images/bird.png").convert_alpha()
         self.rect = self.surface.get_rect()
         self.spawn()
 

@@ -12,12 +12,17 @@ class Pipe(pygame.sprite.Sprite):
         self.board_reference = board_reference
         self.pipe_height = random.randint(50, 250)
 
-        self.surface = pygame.Surface((PIPE_WIDTH, self.pipe_height))
-        self.surface.fill((255,255,40))
+        self.base_image = pygame.image.load("images/pipe.png").convert_alpha()
+
+        y_position = random.choice([self.pipe_height, SCREEN_HEIGHT + 20])
+        self.position = Vector((SCREEN_WIDTH + PIPE_WIDTH, y_position))
+
+        if y_position == self.pipe_height:
+            self.surface = pygame.transform.rotate(self.base_image, 180)
+        else:
+            self.surface = self.base_image
         self.rect = self.surface.get_rect()
 
-        x = random.choice([self.pipe_height, SCREEN_HEIGHT])
-        self.position = Vector((SCREEN_WIDTH + PIPE_WIDTH, x))
         self.rect.midbottom = self.position
 
     def move(self):

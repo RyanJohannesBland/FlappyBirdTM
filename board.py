@@ -18,6 +18,8 @@ class Board():
         self.clock = pygame.time.Clock()
         self.displaysurface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+        self.background = pygame.image.load("images/background.jpg").convert_alpha()
+
         self.pipes = pygame.sprite.Group()
         self.bird = Bird()
 
@@ -45,7 +47,7 @@ class Board():
         self._trigger_self_actions()
 
     def _redraw(self):
-        self.displaysurface.fill((0,0,0))
+        self.displaysurface.blit(self.background, (0, 0))
 
         self.displaysurface.blit(self.bird.surface, self.bird.rect)
         for pipe in self.pipes:
